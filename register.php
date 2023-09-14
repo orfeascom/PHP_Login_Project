@@ -7,15 +7,20 @@ $username = $password = $confPassword = "";
 
 //Checking if the user has submitted anything
 if ( isset($_POST['submit'])){
+
     //Check if the user has submitted a username
     if ( empty($_POST['username'])){
         $errors['username'] = "Username cannot be empty!";
     } else {
         $username = $_POST['username'];
+        //Check if the user provided a valid username
         if ( !preg_match('/^[a-zA-Z0-9]+$/', $username)){
             $errors['username'] = "Alphanumeric characters only!";
         }
     }
+
+    //Check if the user has sabmitted a password/conf password
+    
 }
 
 ?>
