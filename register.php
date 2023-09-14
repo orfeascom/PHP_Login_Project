@@ -2,7 +2,7 @@
 
 require_once 'includes/header.php';
 //Array used for any possible errors
-$errors = array('username'=>'','password'=>'');
+$errors = array('username'=>'','password'=>'','dbErrors'=>'leto');
 $username = $password = $confPassword = "";
 
 //Checking if the user has submitted anything
@@ -42,15 +42,15 @@ if ( isset($_POST['submit'])){
 }
 
 ?>
-
+<div class="errorClass"><?php echo $errors['dbErrors']; ?></div>
 <div>
     <h1>Register</h1>
     <p>Already have an account? <a href="login.php">Log in!</a></p>
 
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-        <div class="redclass"><?php echo $errors['username']; ?></div>
+        <div class="redClass"><?php echo $errors['username']; ?></div>
         <input type="text" name="username" placeholder="Username" value="<?php echo htmlspecialchars($username) ?>">
-        <div class="redclass"><?php echo $errors['password']; ?></div>
+        <div class="redClass"><?php echo $errors['password']; ?></div>
         <input type="password" name="password" placeholder="Password">
         <input type="password" name="confirmPassword" placeholder="Confirm password">
         <button type="submit" name="submit">REGISTER</button>

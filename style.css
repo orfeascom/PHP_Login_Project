@@ -82,7 +82,14 @@ button {
     border-radius: 5px;
 }
 
-.redclass {
+
+.errorClass {
+    color: blue;
+    margin: 0 0 -15px;
+}
+
+.redClass {
     color: red;
     margin: 0 0 -15px;
 }
+
