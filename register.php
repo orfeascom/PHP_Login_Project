@@ -20,7 +20,25 @@ if ( isset($_POST['submit'])){
     }
 
     //Check if the user has sabmitted a password/conf password
-    
+    if ( empty($_POST['password'])){
+        $errors['password'] = "A password must be provided!";
+    } else {
+        if ( empty($_POST['confirmPassword'])){
+            $errors['password'] = "Please confirm your password!";
+        } else {
+            $password = $_POST['password'];
+            $confPassword = $_POST['confirmPassword'];
+            if ( !preg_match('/^[a-zA-Z0-9]+$/', $password)){
+                $errors['password'] = "Please enter a valid password!";                
+            } else {
+                if ( $password === $confPassword){
+                    header('Location: index.php');
+                } else {
+                    $errors['password'] = "Password and Confirm password must match!";
+                }
+            }
+        }
+    }
 }
 
 ?>
