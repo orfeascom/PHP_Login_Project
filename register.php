@@ -58,12 +58,16 @@ if ( isset($_POST['submit'])){
                                 $errors['dbErrors'] = "Could not execute the query...";
                                 exit();
                             } else {
-                                mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+                                $hashedPass = password_hash($password, PASSWORD_DEFAULT);
+                                mysqli_stmt_bind_param($stmt, "ss", $username, $hashedPass);
                                 mysqli_stmt_execute($stmt);
-                                mysqli_stmt_store_result($stmt);
+                                header("Location: index.php");
+                                exit();
                             }
                         }
                     }
+                    mysqli_stmt_close($stmt);
+                    mysqli_close($conn);
                 } else {
                     $errors['password'] = "Password and Confirm password must match!";
                 }
