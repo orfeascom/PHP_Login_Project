@@ -5,7 +5,7 @@ require_once 'includes/database.php';
 //Array used for any possible errors
 $errors = array('username'=>'','password'=>'','dbErrors'=>'');
 $username = $password = $confPassword = "";
-session_start();
+
 
 //Checking if the user has submitted anything
 if ( isset($_POST['submit'])){
@@ -47,9 +47,7 @@ if ( isset($_POST['submit'])){
                         $rowCount = mysqli_stmt_num_rows($stmt);
 
                         if ($rowCount > 0){
-                            header("Location: register.php");
-                            $_SESSION['error'] = "Username already exists...";
-                            exit();
+                            $errors['username'] = "Username already exists...";
                         } else {
                             $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
                             $stmt = mysqli_stmt_init($conn);
@@ -85,7 +83,6 @@ if ( isset($_POST['submit'])){
 
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
         <div class="redClass"><?php echo $errors['username']; ?></div>
-        <div class="redClass"><?php echo $_SESSION['error']; ?></div>
         <input type="text" name="username" placeholder="Username" value="<?php echo htmlspecialchars($username)?>">
         <div class="redClass"><?php echo $errors['password']; ?></div>
         <input type="password" name="password" placeholder="Password">
