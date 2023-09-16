@@ -91,3 +91,8 @@ button {
     color: red;
     margin: 0 0 -15px;
 }
+
+.user {
+    margin-left: 25px;
+    color: rgb(120, 184, 25);
+}
